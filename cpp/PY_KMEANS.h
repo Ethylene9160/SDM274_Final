@@ -3,7 +3,7 @@
 #include<bits/stdc++.h>
 
 #include<cassert>
-#include <random> //Ëæ»úÊýÉú³É
+#include <random> //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #include <ctime>
 //#include <stdlib.h>
 //#include <stdio.h>
@@ -13,30 +13,30 @@
 typedef std::vector<double> my_vector;
 typedef std::vector<std::vector<double>> coordinate;
 /**
-* ÈýÎ¬Êý×é¡£
-* µÚÒ»Î¬¶È´ú±í·ÖÀà
-* µÚ¶þÎ¬¶È´ú±íµÄÊÇ×ø±êµãµÄ¼¯ºÏ¡£
-* ÀýÈç£º
-* orderSamples[0]±íÊ¾µÄÊÇ£¬ËùÓÐ±»·ÖÀàÎªµÚ0ÀàµÄ×ø±êµãµÄ¼¯ºÏ¡£
+* ï¿½ï¿½Î¬ï¿½ï¿½ï¿½é¡£
+* ï¿½ï¿½Ò»Î¬ï¿½È´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+* ï¿½Ú¶ï¿½Î¬ï¿½È´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ï¡ï¿½
+* ï¿½ï¿½ï¿½ç£º
+* orderSamples[0]ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Ç£ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ï¡ï¿½
 */
 typedef std::vector<coordinate> orderedSample;
 typedef std::vector<int> cluster;
 
 //std::default_random_engine generator(static_cast<unsigned>(time(0)));
-//std::uniform_real_distribution<double> distribution(-5.0, 5.0); // ÀýÈçÔÚ-1.0µ½1.0Ö®¼äÉú³ÉËæ»úÊý
+//std::uniform_real_distribution<double> distribution(-5.0, 5.0); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-1.0ï¿½ï¿½1.0Ö®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 class KMeans {
 protected:
 	int dimension;
 	int k;
-	coordinate clusterCenters;//ÖÐÐÄµãmu¡£ ³¤¶ÈÎªk¡£ 
+	coordinate clusterCenters;//ï¿½ï¿½ï¿½Äµï¿½muï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Îªkï¿½ï¿½ 
 
 	/**
-	* ÕûÀíºóµÄ×ø±êµã¡£±íÊ¾£º
+	* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ã¡£ï¿½ï¿½Ê¾ï¿½ï¿½
 	*/
-	orderedSample orderedSamples;//ÕûÀíºóµÄ×ø±êµã£¬ÈýÎ¬ÏòÁ¿¡£
+	orderedSample orderedSamples;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ã£¬ï¿½ï¿½Î¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	cluster labels;//±êÇ©¡£³¤¶ÈÎªk¡£ 
+	cluster labels;//ï¿½ï¿½Ç©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªkï¿½ï¿½ 
 	/**
 	 * @brief calculate distance between x and y
 	 *
@@ -66,19 +66,19 @@ protected:
 		//srand(time(NULL));
 		for (double& px : point) {
 
-			//todo: ÇÐ»»ÎªËæ»úÊýpx¡£
-			//px = (rand() % (N + 1) / (float)(N + 1))*10;
+			//todo: ï¿½Ð»ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½pxï¿½ï¿½
+			// px = (rand() % (N + 1) / (float)(N + 1))*10;
 			//px = distribution(generator);
 		}
 	}
 
 	void update(coordinate& points) {
-		//Çå¿ÕorderedSample
+		//ï¿½ï¿½ï¿½orderedSample
 		orderedSample o(this->k);
 		this->orderedSamples.swap(o);
 		//printf("update start!\n");
 		int size = points.size();
-		//¸üÐÂÃ¿Ò»¸öµãµÄ±êÇ©
+		//ï¿½ï¿½ï¿½ï¿½Ã¿Ò»ï¿½ï¿½ï¿½ï¿½Ä±ï¿½Ç©
 		for (int i = 0; i < size; ++i) {
 			int label = 0;
 			double d2 = squareDistance(points[i], this->clusterCenters[0]), tmp = d2;
@@ -90,15 +90,15 @@ protected:
 				}
 			}
 			this->labels[i] = label;
-			//½«Æä¸üÐÂµ½orderedSamplesÖÐ
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½orderedSamplesï¿½ï¿½
 			//printf("pass2\n");
 			this->orderedSamples[label].push_back(points[i]);
 		}
 		//printf("update each label\n");
 
-		//¸üÐÂ¾ÛÀàÖÐÐÄ
+		//ï¿½ï¿½ï¿½Â¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		for (int label = 0; label < k; ++label) {
-			my_vector v(this->dimension, 0.0);//´æ´¢Î¬¶ÈÎªdimensionÏÂ£¬ËùÓÐ×ø±êµÄºÍ
+			my_vector v(this->dimension, 0.0);//ï¿½æ´¢Î¬ï¿½ï¿½Îªdimensionï¿½Â£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äºï¿½
 			for (my_vector& point : this->orderedSamples[label]) {
 				for (int i = 0; i < dimension; ++i) {
 					v[i] += point[i];
@@ -124,7 +124,7 @@ public:
 		printf("pass\n");
 
 		std::default_random_engine generator(static_cast<unsigned>(time(0)));	//
-		std::uniform_real_distribution<double> distribution(-5.0, 5.0);			// ÀýÈçÔÚ-1.0µ½1.0Ö®¼äÉú³ÉËæ»úÊý
+		std::uniform_real_distribution<double> distribution(-5.0, 5.0);			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-1.0ï¿½ï¿½1.0Ö®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 		return;
 		printf("clusterCenters: \n");
@@ -149,8 +149,8 @@ public:
 
 	virtual void train(coordinate& points, int epochs) {
 		for (int i = 0; i < k; ++i) {
-			//initMu(this->clusterCenters[i], );//Éú³ÉËæ»úÖÐÐÄµã×ø±ê£¬Çë¼ÓÈëº¯Êý·½·¨¡£ 
-			//labels[i] = i;//labels´Ó0¿ªÊ¼³õÊ¼»¯»®·Ö¡£ºÍÃ¿¸ömuÖµÒ»Ò»¶ÔÓ¦¡£ 
+			//initMu(this->clusterCenters[i], );//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ê£¬ï¿½ï¿½ï¿½ï¿½ëº¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+			//labels[i] = i;//labelsï¿½ï¿½0ï¿½ï¿½Ê¼ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½Ö¡ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½muÖµÒ»Ò»ï¿½ï¿½Ó¦ï¿½ï¿½ 
 			//for (auto& px : clusterCenters[i]) {
 			//px = distribution(generator);
 
@@ -246,7 +246,7 @@ public:
 	}
 
 	/**
-	* KÓÐ¶à´ó£¬responsibilities¾ØÕó¾ÍÓÐ¶à´ó¡£
+	* Kï¿½Ð¶ï¿½ï¿½responsibilitiesï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½
 	*/
 	void train(coordinate& points, int epochs) {
 		responsibilities = std::vector<std::vector<double>>(points.size(), std::vector<double>(k, 0.0));

@@ -1,3 +1,5 @@
+# Instructor on Final Project
+
 File Structures
 
 ```bash
@@ -25,30 +27,6 @@ File Structures
 ├─seeds_dataset.txt
 └─readme.md
 ```
-
-
-
-## KMeans
-
-C++ method provided as well. Originally the author hope to enhance the efficiency of runing the code, but it's too hard to finish the make files to suit the python enviroment, so the c plus plus versino is always used as local test classes, and the python versions are used for handing the assigments.
-
-In `KMeans.ipynb` shows the implementation of KMeans++. The original KMeans method has limitations, and was shwon in `cpp/PY_KMEANS.h`.
-
-
-
-## Soft KMeans
-
-C++ method provided as well, only for faster test.
-
-
-
-
-
-## PCA
-
-C++ method provided as well, only for faster test.
-
-
 
 # File details
 
@@ -81,13 +59,15 @@ C++ method provided as well, only for faster test.
 
 # Questions guild
 
-Q1 & Q2: `py\mKMeans.py` 
+**Q1 & Q2:** `py\mKMeans.py` 
 
-Q3 & Q4: `AdvancedKMeans.ipynb`. To see realization of merge-split method, refers to `py\mKMeans.py`.
+**Q3 & Q4:** `AdvancedKMeans.ipynb`. To see realization of merge-split method, refers to `py\mKMeans.py`.
 
-Q5:  `py\mPCA.py`,  `BaseImageProcesser.ipynb`(lower the dimension of the seeds) and `BaseImageProcesser.ipynb`
+**Q5:**  `py\mPCA.py`,  `BaseImageProcesser.ipynb`(lower the dimension of the seeds) and `BaseImageProcesser.ipynb`
 
-Q6: `LinearEncoder.ipynb`, `BaseImageProcesser.ipynb` and `py\PY_LinearAutoEncoder.py`
+**Q6:** `LinearEncoder.ipynb`, `BaseImageProcesser.ipynb` and `py\PY_LinearAutoEncoder.py`
+
+**Q7:** `BaseImageProcesser.ipynb`
 
 # Advanced Discussions
 
@@ -116,3 +96,9 @@ pip install cppyy
 `skylearn`, `numpy`, `cv2`, `Image`, `matplotlib`, `cppyy`(optional), `ctypes`(optional)
 
 Details， ples refer: [Ethylene9160/SDM274_Final: Final project of SDM274 2023 fall (github.com)](https://github.com/Ethylene9160/SDM274_Final).
+
+# Else
+
+图片放的有点多，后面有的图已经排到老后面去了qwq，文字描述可能在图的前几页了qwq，呜呜呜。同时也因为时间不够，没空整理代码了，所以附录里只放了几个陈年老代码emmm，详细的实现可能得去源文件的屎山里看了TvT
+
+Best Wishes.
