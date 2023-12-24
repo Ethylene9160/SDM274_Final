@@ -200,8 +200,6 @@ class SoftKMeans(KMeansPlus):
         # print("init centroids are:")
         # print(self.centroids)
         for i in range(self.epochs):
-            # print("the centroids in the softkmeans are:")
-            # print(self.centroids)
             # 计算每个点的责任
             responsibilities = self.calculate_responsibilities(X)
             # 更新质心
@@ -331,7 +329,7 @@ class EnhancedSoftKMeans(SoftKMeans):
                 continue
             avg_distance = np.mean(np.linalg.norm(X - centroid, axis=1))
             if avg_distance > self.split_threshold:
-                # 由于我们已经检查了assigned_points的长度，可以安全地进行采样
+                # 由于已经检查了assigned_points的长度，可以安全地进行采样
                 split_points = X[np.random.choice(len(X), 2, replace=False)]
                 new_centroids.append(split_points[0])
                 new_centroids.append(split_points[1])
